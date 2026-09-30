@@ -1,0 +1,169 @@
+/* Variáveis CSS base - Foco em cores pastéis suaves e relaxantes (Agradável para Espectro Autista) */
+:root {
+    --bg-color: #f0f8ff; /* Azul muito suave */
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --card-back: #81ecec; /* Turquesa suave */
+    --card-border: #74b9ff;
+    --card-matched: #a29bfe;
+    --focus-outline: #0984e3;
+    --font-family: 'Atkinson Hyperlegible', sans-serif;
+    --font-weight: 400;
+}
+
+/* Modos de Daltonismo */
+body.colorblind-rg {
+    --card-back: #0984e3; /* Azul forte e seguro */
+    --card-matched: #e84393; /* Rosa forte (fácil distinção do azul para daltônicos vermelho/verde) */
+}
+
+body.colorblind-by {
+    --card-back: #d63031; /* Vermelho forte */
+    --card-matched: #2d3436; /* Cinza escuro */
+}
+
+body.colorblind-mono {
+    --card-back: #636e72;
+    --card-matched: #2d3436;
+    --bg-color: #ffffff;
+    --card-border: #2d3436;
+}
+
+/* Modo Baixa Visão (Não total) */
+body.high-vision {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    --card-back: #ffffff;
+    --card-border: #ffffff;
+    --font-weight: 700; /* Aplica Negrito */
+    font-size: 1.2rem;
+}
+body.high-vision button {
+    border: 3px solid #ffffff;
+    font-weight: bold;
+}
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.accessibility-panel {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+body.high-vision .accessibility-panel { background-color: #222; }
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+button, select {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: inherit;
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+button:focus, select:focus {
+    outline: 4px solid var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* Tabuleiro */
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Cartas - Usamos botões nativos para acessibilidade via teclado nativa */
+.card {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    border: 4px solid var(--card-border);
+    background-color: var(--card-back);
+    font-size: 3rem; /* Figuras grandes para analfabetos/estrangeiros */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.card:hover { transform: scale(1.05); }
+
+/* Estados da Carta */
+.card.flipped {
+    background-color: var(--card-bg);
+    cursor: default;
+}
+
+.card.matched {
+    background-color: var(--card-matched);
+    cursor: default;
+    border-color: var(--card-matched);
+}
+
+/* Esconde o conteúdo da carta até ser virada */
+.card .icon { display: none; }
+.card.flipped .icon, .card.matched .icon { display: block; }
+
+.hidden { display: none !important; }
+
+#victory-message {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--card-back);
+    border-radius: 10px;
+    color: #000;
+}
+
+/* Leitor de tela apenas */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória Acessível</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonte acessível (Atkinson Hyperlegible) criada para baixa visão -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Jogo da Memória Universal</h1>
+        <p>Encontre os pares de figuras iguais.</p>
+        
+        <!-- Painel de Acessibilidade -->
+        <section class="accessibility-panel" aria-label="Painel de Acessibilidade">
+            <h2>Opções de Acessibilidade:</h2>
+            <div class="controls">
+                <button id="btn-audio" aria-pressed="false">🔈 Ativar Áudio/Voz</button>
+                <button id="btn-vision" aria-pressed="false">👁️ Alto Contraste & Negrito</button>
+                
+                <div class="colorblind-controls">
+                    <label for="colorblind-select">Cores (Daltonismo):</label>
+                    <select id="colorblind-select">
+                        <option value="default">Padrão (Cores Suaves - Autismo)</option>
+                        <option value="rg">Protanopia/Deuteranopia (Vermelho/Verde)</option>
+                        <option value="by">Tritanopia (Azul/Amarelo)</option>
+                        <option value="mono">Monocromático (Preto e Branco)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <!-- Região para Leitores de Tela anunciarem ações do jogo silenciosamente -->
+        <div id="status-anunciante" class="sr-only" aria-live="polite">O jogo começou. Selecione uma carta.</div>
+        
+        <!-- Tabuleiro do Jogo -->
+        <section id="game-board" aria-label="Tabuleiro do Jogo da Memória">
+            <!-- As cartas serão geradas aqui pelo JavaScript -->
+        </section>
+        
+        <div id="victory-message" class="hidden" aria-live="assertive">
+            <h2>🎉 Parabéns! Você encontrou todos os pares! 🎉</h2>
+            <button id="btn-restart">Jogar Novamente</button>
+        </div>
+    </main>
+
+    <script src="alberto.js"></script>
+</body>
+</html>
